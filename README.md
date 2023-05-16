@@ -1,2 +1,2 @@
 # Faculdade
-Códigos desenvolvidos durante o estudo
+Códigos desenvolvidos durante os estudos
