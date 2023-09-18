@@ -1,0 +1,31 @@
+import requests #biblioteca para requisições
+import re #biblioteca para expressões regulares
+
+def API(url):
+    try:
+    # Realiza uma solicitação HTTP GET para a página
+      response = requests.get(url)
+
+    # Verifica se a solicitação foi bem-sucedida
+      if response.status_code == 200:
+        # Use regex para encontrar informações correspondentes a um padrão
+        # Neste exemplo, procuraremos por endereços de e-mail no texto da página
+          email_pattern = r'\b[A-Za-z0-9.-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+          emails = re.findall(email_pattern, response.text)
+
+        # Exibe os endereços de e-mail encontrados
+          for email in emails:
+              print(email)
+
+      else:
+          print(f"Erro ao acessar a primeira página. Código de status: {response.status_code}")
+
+    except Exception as e:
+        print(f"Ocorreu um erro: {e}")
+
+
+API("http://www.mcce.org.br/newsletter")
+print('-------------------')
+API("https://www.invertexto.com/gerador-email-temporario")
+print('-------------------')
+API("https://tempail.com/pt/")
